@@ -1,23 +1,26 @@
-import Link from "next/link";
-import { addToCartAction } from "./actions";
-import { CountrySelector } from "./components/country-selector";
-import { formatMoney } from "../lib/format-money";
 import { getLocalization, getProducts } from "../lib/shopify";
 import { getCurrentCountry } from "../lib/shopify/localization-session";
 import Header from "./components/header";
 import Hero from "./components/hero";
+import Arrival from "./components/arrival";
 
 export default async function Home() {
   const country = await getCurrentCountry();
   const [products] = await Promise.all([
-    getProducts({ first: 24, country }),
+    getProducts({
+      first: 3,
+      country,
+      sortKey: "CREATED_AT",
+      reverse: true,
+    }),
     getLocalization(country),
   ]);
 
   return (
-    <main className='min-h-screen bg-[#f6f5f3] text-[#414833]'>
+    <main className="min-h-screen bg-offWhite text-[#414833]">
       <Header />
       <Hero />
+      <Arrival products={products.nodes} />
 
       {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {products.nodes.map((product) => {

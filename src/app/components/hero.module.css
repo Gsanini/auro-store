@@ -1,0 +1,21 @@
+.shade {
+  background:
+    linear-gradient(90deg, rgba(0, 8, 7, 0.44) 0%, rgba(0, 8, 7, 0.08) 48%, transparent 70%),
+    linear-gradient(0deg, rgba(0, 5, 4, 0.26) 0%, transparent 32%);
+}
+
+@media (max-width: 900px) {
+  .shade {
+    background:
+      linear-gradient(90deg, rgba(0, 8, 7, 0.76) 0%, rgba(0, 8, 7, 0.3) 72%, rgba(0, 8, 7, 0.18)),
+      linear-gradient(0deg, rgba(0, 5, 4, 0.36), transparent 42%);
+  }
+}
+
+@media (max-width: 560px) {
+  .shade {
+    background:
+      linear-gradient(90deg, rgba(0, 8, 7, 0.84) 0%, rgba(0, 8, 7, 0.52) 75%, rgba(0, 8, 7, 0.38)),
+      linear-gradient(0deg, rgba(0, 5, 4, 0.5), transparent 48%);
+  }
+}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const spaceGrotesk = Space_Grotesk({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -19,11 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang='pt-BR'
-      className={`${poppins.className} h-full antialiased`}
+      lang="pt-BR"
+      className={`${spaceGrotesk.className} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className='min-h-full flex flex-col' suppressHydrationWarning>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {children}
       </body>
     </html>

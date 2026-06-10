@@ -3,13 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --verdeOlivia: #414833;
+  --verdeOlivia: #303625;
   --offWhite: #f6f5f3;
-  --deepBluish: #0d3a35;
+  --deepBluish: #11453f;
   --moderateGreen: #276152;
   --laurelGreen: #b1b7ab;
   --lightCream: #fbf6f0;
   --creamFigma: #e9e8e4;
+  --darkBack: #041814;
 }
 
 @theme inline {
@@ -22,6 +23,7 @@
   --color-laurelGreen: var(--laurelGreen);
   --color-lightCream: var(--lightCream);
   --color-creamFigma: var(--creamFigma);
+  --color-darkBack: var(--darkBack);
 }
 
 @media (prefers-color-scheme: dark) {
