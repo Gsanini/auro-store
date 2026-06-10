@@ -1,0 +1,654 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 10px 12px 8px;
+  background: var(--deepBluish);
+  color: var(--creamFigma);
+}
+
+.shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px minmax(0, 1fr);
+  align-items: center;
+  height: 78px;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 28px;
+  overflow: hidden;
+  border: 1px solid rgba(233, 232, 228, 0.25);
+  border-radius: 20px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0
+      0 / 52px 100%,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 60%),
+    rgba(39, 97, 82, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 14px 40px rgba(2, 23, 20, 0.24);
+  backdrop-filter: blur(20px);
+}
+
+.shell::before,
+.shell::after {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 32px;
+  border-block: 1px solid rgba(233, 232, 228, 0.3);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.shell::before {
+  left: 9px;
+  border-left: 1px solid rgba(233, 232, 228, 0.3);
+  border-radius: 8px 0 0 8px;
+}
+
+.shell::after {
+  right: 9px;
+  border-right: 1px solid rgba(233, 232, 228, 0.3);
+  border-radius: 0 8px 8px 0;
+}
+
+.minuteTrack {
+  position: absolute;
+  inset: 7px 22px auto;
+  height: 3px;
+  opacity: 0.45;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(233, 232, 228, 0.7) 0 1px,
+    transparent 1px 15px,
+    rgba(233, 232, 228, 0.35) 15px 16px,
+    transparent 16px 30px
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    transparent 39% 61%,
+    black 92%,
+    transparent
+  );
+}
+
+.leftMeta {
+  position: absolute;
+  bottom: 7px;
+  left: 31px;
+  display: flex;
+  gap: 8px;
+  color: rgba(233, 232, 228, 0.42);
+  font-size: 6px;
+  font-weight: 500;
+  letter-spacing: 0.21em;
+  pointer-events: none;
+}
+
+.desktopLeft {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.desktopRight {
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2vw, 34px);
+  transform: translateY(-50%);
+}
+
+.navigationList {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 38px);
+}
+
+.navigationList a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  color: rgba(233, 232, 228, 0.78);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  outline: none;
+  transition:
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.navigationList a > span {
+  color: rgba(233, 232, 228, 0.32);
+  font-size: 6px;
+  transition: color 250ms ease;
+}
+
+.navigationList a::after {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  height: 1px;
+  background: var(--creamFigma);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease;
+}
+
+.navigationList a:hover,
+.navigationList a:focus-visible {
+  color: white;
+  transform: translateY(-1px);
+}
+
+.navigationList a:hover > span,
+.navigationList a:focus-visible > span {
+  color: var(--creamFigma);
+}
+
+.navigationList a:hover::after,
+.navigationList a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.logoDock {
+  position: absolute;
+  z-index: 3;
+  top: -1px;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 270px;
+  height: 72px;
+  overflow: hidden;
+  outline: none;
+  transform: translateX(-50%);
+}
+
+.logoPlate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 0 rgba(13, 58, 53, 0.08));
+}
+
+.logoDock::before,
+.logoDock::after {
+  position: absolute;
+  bottom: 8px;
+  width: 40px;
+  height: 1px;
+  background: rgba(13, 58, 53, 0.22);
+  content: "";
+}
+
+.logoDock::before {
+  left: 35px;
+  transform: rotate(22deg);
+}
+
+.logoDock::after {
+  right: 35px;
+  transform: rotate(-22deg);
+}
+
+.logo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 75px;
+  height: auto;
+  transition:
+    opacity 250ms ease,
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate(-50%, -50%);
+}
+
+.logoHalo {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 106px;
+  height: 106px;
+  border: 1px solid rgba(13, 58, 53, 0.08);
+  border-radius: 50%;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate(-50%, -50%);
+}
+
+.logoHalo::before,
+.logoHalo::after {
+  position: absolute;
+  inset: 7px;
+  border: 1px dashed rgba(13, 58, 53, 0.12);
+  border-radius: inherit;
+  content: "";
+}
+
+.logoHalo::after {
+  inset: 17px;
+  border-style: solid;
+}
+
+.logoIndex {
+  position: absolute;
+  top: 7px;
+  color: rgba(13, 58, 53, 0.3);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.logoDock:hover .logo,
+.logoDock:focus-visible .logo {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.logoDock:hover .logoHalo,
+.logoDock:focus-visible .logoHalo {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.04);
+}
+
+.logoDock:focus-visible {
+  filter: brightness(1.08);
+}
+
+.actions,
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.actionButton,
+.menuButton {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(233, 232, 228, 0.22);
+  border-radius: 50%;
+  color: var(--creamFigma);
+  outline: none;
+  transition:
+    color 250ms ease,
+    border-color 250ms ease,
+    background-color 250ms ease,
+    transform 250ms ease;
+}
+
+.actionButton::before,
+.menuButton::before {
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(233, 232, 228, 0.18);
+  border-radius: inherit;
+  content: "";
+  transition: transform 400ms ease;
+}
+
+.actionButton > span {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  padding: 4px 7px;
+  border: 1px solid rgba(233, 232, 228, 0.14);
+  border-radius: 4px;
+  background: var(--deepBluish);
+  color: rgba(233, 232, 228, 0.8);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translate(-50%, -3px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.actionButton:hover,
+.actionButton:focus-visible,
+.menuButton:hover,
+.menuButton:focus-visible {
+  border-color: rgba(233, 232, 228, 0.7);
+  background: rgba(233, 232, 228, 0.1);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.actionButton:hover::before,
+.actionButton:focus-visible::before,
+.menuButton:hover::before,
+.menuButton:focus-visible::before {
+  transform: rotate(35deg);
+}
+
+.actionButton:hover > span,
+.actionButton:focus-visible > span {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.mobileActions {
+  display: none;
+  justify-self: end;
+}
+
+.menuButton svg {
+  position: absolute;
+  transition:
+    opacity 220ms ease,
+    transform 300ms ease;
+}
+
+.iconVisible {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.iconHidden {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.7);
+}
+
+.crown {
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+  display: flex;
+  gap: 2px;
+  opacity: 0.35;
+}
+
+.crown span {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--creamFigma);
+}
+
+.mobileMenu {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 132px 24px 26px;
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(177, 183, 171, 0.14),
+      transparent 36%
+    ),
+    var(--deepBluish);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-14px);
+  transition:
+    opacity 350ms ease,
+    visibility 350ms ease,
+    transform 500ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.mobileMenuOpen {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobileMenuDial {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: min(82vw, 390px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(233, 232, 228, 0.055);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mobileMenuDial::before,
+.mobileMenuDial::after {
+  position: absolute;
+  border: 1px dashed rgba(233, 232, 228, 0.06);
+  border-radius: inherit;
+  content: "";
+}
+
+.mobileMenuDial::before {
+  inset: 12%;
+}
+
+.mobileMenuDial::after {
+  inset: 27%;
+}
+
+.mobileMenuEyebrow {
+  position: relative;
+  margin-bottom: 18px;
+  color: rgba(233, 232, 228, 0.4);
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.mobileMenu ul {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobileMenu li {
+  border-bottom: 1px solid rgba(233, 232, 228, 0.12);
+  opacity: 0;
+  transform: translateX(-18px);
+  transition:
+    opacity 400ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobileMenu li:first-child {
+  border-top: 1px solid rgba(233, 232, 228, 0.12);
+}
+
+.mobileMenu li.mobileItemOpen {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobileMenu li a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  padding: 14px 0;
+  color: var(--creamFigma);
+  font-size: clamp(20px, 6vw, 28px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.mobileMenu li a > span:first-child {
+  color: rgba(233, 232, 228, 0.35);
+  font-size: 7px;
+  font-weight: 500;
+}
+
+.mobileLinkLine {
+  position: absolute;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: var(--creamFigma);
+  transition: width 300ms ease;
+}
+
+.mobileMenu li a:hover .mobileLinkLine,
+.mobileMenu li a:focus-visible .mobileLinkLine {
+  width: 30px;
+}
+
+.mobileMenuFooter {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(233, 232, 228, 0.3);
+  font-size: 6px;
+  letter-spacing: 0.18em;
+}
+
+@media (max-width: 1160px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr) 230px minmax(0, 1fr);
+    padding-inline: 22px;
+  }
+
+  .logoDock {
+    width: 230px;
+  }
+
+  .navigationList {
+    gap: 15px;
+  }
+
+  .navigationList a {
+    gap: 4px;
+    font-size: 8px;
+  }
+
+  .desktopRight {
+    right: 22px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1099px) {
+  .header {
+    padding: 8px 8px 6px;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 1fr 150px 1fr;
+    height: 68px;
+    padding: 0 14px;
+    border-radius: 17px;
+  }
+
+  .desktopLeft,
+  .desktopRight,
+  .leftMeta,
+  .crown {
+    display: none;
+  }
+
+  .mobileActions {
+    display: flex;
+    grid-column: 3;
+  }
+
+  .logoDock {
+    top: -1px;
+    width: 160px;
+    height: 63px;
+  }
+
+  .logoDock::before,
+  .logoDock::after {
+    bottom: 6px;
+    width: 18px;
+  }
+
+  .logoDock::before {
+    left: 20px;
+  }
+
+  .logoDock::after {
+    right: 20px;
+  }
+
+  .logo {
+    width: 74px;
+  }
+
+  .logoHalo {
+    width: 82px;
+    height: 82px;
+  }
+
+  .logoIndex {
+    top: 5px;
+    font-size: 5px;
+  }
+
+  .actionButton,
+  .menuButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .actionButton > span {
+    display: none;
+  }
+
+  .minuteTrack {
+    inset-inline: 13px;
+    mask-image: linear-gradient(90deg, black, transparent 27% 73%, black);
+  }
+}
+
+@media (max-width: 420px) {
+  .shell {
+    grid-template-columns: 1fr 130px 1fr;
+  }
+
+  .logoDock {
+    width: 142px;
+  }
+
+  .logo {
+    width: 68px;
+  }
+
+  .mobileActions {
+    gap: 3px;
+  }
+
+  .actionButton,
+  .menuButton {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoHalo,
+  .logo,
+  .mobileMenu,
+  .mobileMenu li {
+    transition: none;
+  }
+}

@@ -4,29 +4,22 @@ import { CountrySelector } from "./components/country-selector";
 import { formatMoney } from "../lib/format-money";
 import { getLocalization, getProducts } from "../lib/shopify";
 import { getCurrentCountry } from "../lib/shopify/localization-session";
+import Header from "./components/header";
+import Hero from "./components/hero";
 
 export default async function Home() {
   const country = await getCurrentCountry();
-  const [products, localization] = await Promise.all([
+  const [products] = await Promise.all([
     getProducts({ first: 24, country }),
     getLocalization(country),
   ]);
 
   return (
-    <main className="min-h-screen bg-[#f6f5f3] p-8 text-[#414833]">
-      <header className="mb-10 flex items-center justify-between">
-        <h1 className="text-5xl font-semibold">Auro</h1>
-        <nav className="flex gap-4">
-          <Link href="/collections">Coleções</Link>
-          <Link href="/cart">Carrinho</Link>
-        </nav>
-      </header>
+    <main className='min-h-screen bg-[#f6f5f3] text-[#414833]'>
+      <Header />
+      <Hero />
 
-      <div className="mb-8">
-        <CountrySelector localization={localization} />
-      </div>
-
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {products.nodes.map((product) => {
           const firstVariant = product.variants.nodes[0];
 
@@ -60,7 +53,7 @@ export default async function Home() {
             </article>
           );
         })}
-      </div>
+      </div> */}
     </main>
   );
 }
