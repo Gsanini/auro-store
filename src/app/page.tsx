@@ -1,27 +1,31 @@
-import { getLocalization, getProducts } from "../lib/shopify";
+import { getCollectionByHandle, getLocalization } from "../lib/shopify";
 import { getCurrentCountry } from "../lib/shopify/localization-session";
 import Header from "./components/header";
 import Hero from "./components/hero";
 import Arrival from "./components/arrival";
+import StressFree from "./components/stress-free";
+import PerfectWatches from "./components/perfect-watches";
+
+const NEW_ARRIVAL_COLLECTION_HANDLE = "new-arrival";
 
 export default async function Home() {
   const country = await getCurrentCountry();
-  const [products] = await Promise.all([
-    getProducts({
-      first: 3,
+  const [newArrivalCollection] = await Promise.all([
+    getCollectionByHandle(NEW_ARRIVAL_COLLECTION_HANDLE, {
+      first: 4,
       country,
-      sortKey: "CREATED_AT",
-      reverse: true,
     }),
     getLocalization(country),
   ]);
+  const newArrivalProducts = newArrivalCollection?.products.nodes ?? [];
 
   return (
-    <main className="min-h-screen bg-offWhite text-[#414833]">
+    <main className='min-h-screen bg-offWhite text-[#414833]'>
       <Header />
       <Hero />
-      <Arrival products={products.nodes} />
-
+      <Arrival products={newArrivalProducts.slice(0, 3)} />
+      <StressFree product={newArrivalProducts[0]} />
+      <PerfectWatches products={newArrivalProducts} />
       {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {products.nodes.map((product) => {
           const firstVariant = product.variants.nodes[0];

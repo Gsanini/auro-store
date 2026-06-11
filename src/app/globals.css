@@ -11,6 +11,7 @@
   --lightCream: #fbf6f0;
   --creamFigma: #e9e8e4;
   --darkBack: #041814;
+  --page-gutter: 22px;
 }
 
 @theme inline {
@@ -36,6 +37,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@media (min-width: 561px) {
+  :root {
+    --page-gutter: max(6.5vw, calc((100vw - 1480px) / 2 + 42px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

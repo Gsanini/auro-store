@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -8,8 +8,26 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Auro",
-  description: "Loja Auro",
+  title: {
+    default: "Auro",
+    template: "%s | Auro",
+  },
+  description: "Relógios de luxo criados para atravessar gerações.",
+  applicationName: "Auro",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    title: "Auro",
+    statusBarStyle: "default",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
